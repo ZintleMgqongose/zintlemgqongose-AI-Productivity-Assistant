@@ -69,9 +69,9 @@
   --card-foreground: oklch(0.18 0.03 260);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.18 0.03 260);
-  --primary: oklch(0.52 0.22 270);
+  --primary: oklch(0.52 0.25 275);
   --primary-foreground: oklch(0.99 0.005 250);
-  --primary-glow: oklch(0.65 0.2 280);
+  --primary-glow: oklch(0.62 0.22 285);
   --secondary: oklch(0.96 0.01 260);
   --secondary-foreground: oklch(0.25 0.04 265);
   --muted: oklch(0.97 0.008 260);
@@ -144,13 +144,30 @@
 
   body {
     color: var(--color-foreground);
-    background: linear-gradient(135deg, #F5F3FF 0%, #EDE9FE 100%);
+    background-color: #4F46E5;
+    background-image:
+      radial-gradient(at 20% 20%, #4F46E5 0px, transparent 50%),
+      radial-gradient(at 80% 10%, #7C3AED 0px, transparent 50%),
+      radial-gradient(at 70% 80%, #06B6D4 0px, transparent 50%),
+      radial-gradient(at 10% 90%, #7C3AED 0px, transparent 50%);
     background-attachment: fixed;
+    background-size: 200% 200%;
+    animation: aura-shift 18s ease-in-out infinite;
     min-height: 100vh;
   }
 
   .dark body {
-    background: linear-gradient(135deg, #2a2240 0%, #1f1a33 100%);
+    background-color: #1e1b4b;
+    background-image:
+      radial-gradient(at 20% 20%, #312e81 0px, transparent 50%),
+      radial-gradient(at 80% 10%, #5b21b6 0px, transparent 50%),
+      radial-gradient(at 70% 80%, #0e7490 0px, transparent 50%),
+      radial-gradient(at 10% 90%, #4c1d95 0px, transparent 50%);
     background-attachment: fixed;
   }
+}
+
+@keyframes aura-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
 }
