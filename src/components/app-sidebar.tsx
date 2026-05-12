@@ -32,7 +32,7 @@ export function AppSidebar() {
       <SidebarHeader className="border-b border-sidebar-border">
         <div className="flex items-center gap-2 px-2 py-3">
           <div
-            className="flex h-8 w-8 items-center justify-center rounded-lg text-primary-foreground shrink-0"
+            className="flex h-8 w-8 items-center justify-center rounded-lg text-white shrink-0 shadow-[0_0_15px_rgba(124,58,237,0.5)]"
             style={{ background: "var(--gradient-primary)" }}
           >
             <Sparkles className="h-4 w-4" />
@@ -54,7 +54,7 @@ export function AppSidebar() {
                 const active = currentPath === item.url;
                 return (
                   <SidebarMenuItem key={item.url}>
-                    <SidebarMenuButton asChild isActive={active}>
+                    <SidebarMenuButton asChild isActive={active} className={active ? "shadow-[0_0_15px_rgba(124,58,237,0.5)]" : ""}>
                       <Link to={item.url} className="flex items-center gap-2">
                         <item.icon className="h-4 w-4" />
                         {!collapsed && <span>{item.title}</span>}
