@@ -144,13 +144,13 @@
 
   body {
     color: var(--color-foreground);
-    background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+    background: linear-gradient(135deg, #FAF7F0 0%, #F5EFE0 100%);
     background-attachment: fixed;
     min-height: 100vh;
   }
 
   .dark body {
-    background: linear-gradient(135deg, #4338ca 0%, #7e22ce 100%);
+    background: linear-gradient(135deg, #1f1b16 0%, #2a2520 100%);
     background-attachment: fixed;
   }
 }
