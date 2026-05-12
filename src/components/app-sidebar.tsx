@@ -32,15 +32,14 @@ export function AppSidebar() {
       <SidebarHeader className="border-b border-sidebar-border">
         <div className="flex items-center gap-2 px-2 py-3">
           <div
-            className="flex h-8 w-8 items-center justify-center rounded-lg text-white shrink-0 shadow-[0_0_15px_rgba(124,58,237,0.5)]"
-            style={{ background: "var(--gradient-primary)" }}
+            className="flex h-8 w-8 items-center justify-center rounded-lg text-slate-900 shrink-0 shadow-[0_0_15px_rgba(45,212,191,0.5)] bg-[#2DD4BF]"
           >
             <Sparkles className="h-4 w-4" />
           </div>
           {!collapsed && (
             <div className="flex flex-col leading-tight">
-              <span className="text-sm font-semibold">Aura AI</span>
-              <span className="text-xs text-muted-foreground">Workplace</span>
+              <span className="text-sm font-semibold text-slate-900">Aura AI</span>
+              <span className="text-xs text-slate-600">Workplace</span>
             </div>
           )}
         </div>
@@ -54,10 +53,10 @@ export function AppSidebar() {
                 const active = currentPath === item.url;
                 return (
                   <SidebarMenuItem key={item.url}>
-                    <SidebarMenuButton asChild isActive={active} className={active ? "shadow-[0_0_15px_rgba(124,58,237,0.5)]" : ""}>
+                    <SidebarMenuButton asChild isActive={active} className={active ? "shadow-[0_0_18px_rgba(125,211,252,0.7)] border-l-2 border-[#86EFAC]" : "text-slate-600"}>
                       <Link to={item.url} className="flex items-center gap-2">
-                        <item.icon className="h-4 w-4" />
-                        {!collapsed && <span>{item.title}</span>}
+                        <item.icon className={`h-4 w-4 ${active ? "text-[#2DD4BF]" : ""}`} />
+                        {!collapsed && <span className={active ? "text-slate-900 font-medium" : ""}>{item.title}</span>}
                       </Link>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
