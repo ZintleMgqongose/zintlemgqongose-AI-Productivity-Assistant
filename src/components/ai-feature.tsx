@@ -1,5 +1,5 @@
 import { useState, type ReactNode } from "react";
-import { Loader2, Sparkles, Copy, RotateCcw } from "lucide-react";
+import { Loader2, Sparkles, Copy, RotateCcw, Pencil, CheckCircle2, AlertTriangle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
@@ -31,6 +31,9 @@ export function AiFeature({ feature, title, description, icon, fields, outputLab
   );
   const [output, setOutput] = useState("");
   const [loading, setLoading] = useState(false);
+  const [approved, setApproved] = useState(false);
+  const [isEditing, setIsEditing] = useState(true);
+  const requiresReview = feature === "email" || feature === "summary";
 
   async function generate() {
     if (fields.some((f) => !values[f.name]?.trim())) {
@@ -39,6 +42,8 @@ export function AiFeature({ feature, title, description, icon, fields, outputLab
     }
     setLoading(true);
     setOutput("");
+    setApproved(false);
+    setIsEditing(true);
     try {
       const { data, error } = await supabase.functions.invoke("ai-generate", {
         body: { feature, inputs: values },
@@ -58,6 +63,14 @@ export function AiFeature({ feature, title, description, icon, fields, outputLab
     if (!output) return;
     navigator.clipboard.writeText(output);
     toast.success("Copied to clipboard");
+  }
+
+  function approveAndCopy() {
+    if (!output) return;
+    navigator.clipboard.writeText(output);
+    setApproved(true);
+    setIsEditing(false);
+    toast.success("Approved & copied to clipboard");
   }
 
   return (
@@ -128,8 +141,38 @@ export function AiFeature({ feature, title, description, icon, fields, outputLab
               onChange={(e) => setOutput(e.target.value)}
               rows={16}
               placeholder="Your AI-generated result will appear here…"
+              readOnly={requiresReview && !isEditing}
               className="font-mono text-sm leading-relaxed"
             />
+            {requiresReview && output && (
+              <div className="mt-4 space-y-3">
+                {approved ? (
+                  <div className="flex items-start gap-2 rounded-xl border border-green-500/30 bg-green-500/10 p-3 text-sm text-green-700 dark:text-green-300">
+                    <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0" />
+                    <span>Approved and copied. Safe to send.</span>
+                  </div>
+                ) : (
+                  <>
+                    <div className="flex items-start gap-2 rounded-xl border border-amber-500/30 bg-amber-500/10 p-3 text-sm text-amber-700 dark:text-amber-300">
+                      <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0" />
+                      <span><strong>Human Review Required:</strong> Please verify and edit the AI's output before finalizing.</span>
+                    </div>
+                    <div className="flex flex-wrap gap-2">
+                      <Button
+                        variant="outline"
+                        onClick={() => setIsEditing(true)}
+                        disabled={isEditing}
+                      >
+                        <Pencil className="h-4 w-4" /> Edit Draft
+                      </Button>
+                      <Button onClick={approveAndCopy}>
+                        <CheckCircle2 className="h-4 w-4" /> Approve & Copy
+                      </Button>
+                    </div>
+                  </>
+                )}
+              </div>
+            )}
           </CardContent>
         </Card>
       </div>
