@@ -120,7 +120,7 @@ function RootComponent() {
         <div className="min-h-screen flex w-full">
           <AppSidebar />
           <div className="flex-1 flex flex-col min-w-0">
-            <header className="h-14 flex items-center gap-3 border-b border-white/20 bg-white/40 dark:bg-black/40 backdrop-blur-xl px-4 sticky top-0 z-10 shadow-2xl">
+            <header className="h-14 flex items-center gap-3 border-b border-white/20 bg-white/30 backdrop-blur-xl px-4 sticky top-0 z-10 shadow-2xl">
               <SidebarTrigger />
               <span className="text-sm font-medium text-muted-foreground">AI Workplace Productivity Assistant</span>
             </header>
