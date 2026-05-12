@@ -11,7 +11,7 @@ export const Route = createFileRoute("/meeting-notes")({
   }),
   component: () => (
     <AiFeature
-      feature="meeting"
+      feature="summary"
       title="Meeting Notes Summarizer"
       description="Paste raw notes — get a structured summary with decisions and actions."
       icon={<FileText className="h-5 w-5" />}
