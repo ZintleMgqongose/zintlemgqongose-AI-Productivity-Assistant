@@ -31,13 +31,13 @@ export function AppSidebar() {
     <Sidebar collapsible="icon">
       <SidebarHeader className="border-b border-sidebar-border">
         <div className="flex items-center gap-2 px-2 py-3">
-          <div className="flex h-8 w-8 items-center justify-center rounded-[12px] text-white shrink-0 bg-[#E29578] shadow-[0_4px_14px_rgba(226,149,120,0.35)]">
+          <div className="flex h-8 w-8 items-center justify-center rounded-[12px] text-white shrink-0 bg-[#B8926A] shadow-[0_4px_14px_rgba(184,146,106,0.35)]">
             <Sparkles className="h-4 w-4" />
           </div>
           {!collapsed && (
             <div className="flex flex-col leading-tight">
-              <span className="text-sm font-semibold text-[#3D2B1F]">Aura AI</span>
-              <span className="text-xs text-[#79695E]">Workplace</span>
+              <span className="text-sm font-semibold text-white">Aura AI</span>
+              <span className="text-xs text-[#94A3B8]">Workplace</span>
             </div>
           )}
         </div>
@@ -51,10 +51,10 @@ export function AppSidebar() {
                 const active = currentPath === item.url;
                 return (
                   <SidebarMenuItem key={item.url}>
-                    <SidebarMenuButton asChild isActive={active} className={active ? "bg-[#E6E6FA] text-[#3D2B1F] hover:bg-[#E6E6FA]" : "text-[#79695E]"}>
+                    <SidebarMenuButton asChild isActive={active} className={active ? "bg-white/5 text-white border-l-2 border-[#D4AF37] hover:bg-white/10" : "text-[#94A3B8] hover:bg-white/5 hover:text-white"}>
                       <Link to={item.url} className="flex items-center gap-2">
-                        <item.icon className={`h-4 w-4 ${active ? "text-[#3D2B1F]" : "text-[#79695E]"}`} strokeWidth={1.5} />
-                        {!collapsed && <span className={active ? "text-[#3D2B1F] font-medium" : ""}>{item.title}</span>}
+                        <item.icon className={`h-4 w-4 ${active ? "text-[#D4AF37]" : "text-[#94A3B8]"}`} strokeWidth={1.5} />
+                        {!collapsed && <span className={active ? "text-white font-medium" : ""}>{item.title}</span>}
                       </Link>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
