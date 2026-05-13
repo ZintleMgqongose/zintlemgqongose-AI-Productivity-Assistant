@@ -89,6 +89,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         rel: "stylesheet",
         href: appCss,
       },
+      { rel: "preconnect", href: "https://fonts.googleapis.com" },
+      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
+      { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" },
     ],
   }),
   shellComponent: RootShell,
@@ -120,9 +123,9 @@ function RootComponent() {
         <div className="min-h-screen flex w-full">
           <AppSidebar />
           <div className="flex-1 flex flex-col min-w-0">
-            <header className="h-14 flex items-center gap-3 border-b border-white/40 bg-white/60 backdrop-blur-3xl px-4 sticky top-0 z-10 shadow-xl shadow-[#3D2B1F]/5">
+            <header className="h-14 flex items-center gap-3 border-b border-white/10 bg-[#0A0A0A]/70 backdrop-blur-3xl px-4 sticky top-0 z-10">
               <SidebarTrigger />
-              <span className="text-sm font-medium text-[#79695E]">AI Workplace Productivity Assistant</span>
+              <span className="text-sm font-medium text-[#94A3B8]">AI Workplace Productivity Assistant</span>
             </header>
             <main className="flex-1">
               <Outlet />
