@@ -49,16 +49,10 @@ function Index() {
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {features.map((f) => (
             <Link key={f.url} to={f.url} className="group">
-              <Card
-                className="h-full border-border/60 transition-all group-hover:-translate-y-0.5 group-hover:border-primary/40"
-                style={{ boxShadow: "var(--shadow-soft)" }}
-              >
+              <Card className="h-full transition-all group-hover:-translate-y-0.5">
                 <CardHeader>
-                  <div
-                    className="mb-2 flex h-10 w-10 items-center justify-center rounded-xl text-primary-foreground"
-                    style={{ background: "var(--gradient-primary)" }}
-                  >
-                    <f.icon className="h-5 w-5" />
+                  <div className="mb-2 flex h-10 w-10 items-center justify-center rounded-xl text-[#d8b4fe] bg-purple-500/15 border border-purple-400/25 backdrop-blur-xl shadow-[0_0_18px_rgba(167,139,250,0.2)]">
+                    <f.icon className="h-5 w-5" strokeWidth={1.5} />
                   </div>
                   <CardTitle className="text-base flex items-center justify-between">
                     {f.title}

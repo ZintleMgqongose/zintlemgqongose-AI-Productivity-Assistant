@@ -31,7 +31,7 @@ export function AppSidebar() {
     <Sidebar collapsible="icon">
       <SidebarHeader className="border-b border-sidebar-border">
         <div className="flex items-center gap-2 px-2 py-3">
-          <div className="flex h-8 w-8 items-center justify-center rounded-[12px] text-white shrink-0 bg-[#B8926A] shadow-[0_4px_14px_rgba(184,146,106,0.35)]">
+          <div className="flex h-8 w-8 items-center justify-center rounded-[12px] text-white shrink-0 bg-purple-500/20 border border-purple-400/30 backdrop-blur-xl shadow-[0_0_20px_rgba(167,139,250,0.35)]">
             <Sparkles className="h-4 w-4" />
           </div>
           {!collapsed && (
@@ -51,9 +51,9 @@ export function AppSidebar() {
                 const active = currentPath === item.url;
                 return (
                   <SidebarMenuItem key={item.url}>
-                    <SidebarMenuButton asChild isActive={active} className={active ? "bg-white/5 text-white border-l-2 border-[#D4AF37] hover:bg-white/10" : "text-[#94A3B8] hover:bg-white/5 hover:text-white"}>
+                    <SidebarMenuButton asChild isActive={active} className={active ? "bg-purple-500/20 text-white border-l-2 border-[#a78bfa] shadow-[0_0_18px_rgba(167,139,250,0.4)] hover:bg-purple-500/25" : "text-[#94A3B8] hover:bg-white/5 hover:text-white"}>
                       <Link to={item.url} className="flex items-center gap-2">
-                        <item.icon className={`h-4 w-4 ${active ? "text-[#D4AF37]" : "text-[#94A3B8]"}`} strokeWidth={1.5} />
+                        <item.icon className={`h-4 w-4 ${active ? "text-[#d8b4fe]" : "text-[#94A3B8]"}`} strokeWidth={1.5} />
                         {!collapsed && <span className={active ? "text-white font-medium" : ""}>{item.title}</span>}
                       </Link>
                     </SidebarMenuButton>
