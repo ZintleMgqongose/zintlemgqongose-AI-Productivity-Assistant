@@ -4,7 +4,7 @@
 **AURA AI** is a comprehensive, single-platform dashboard designed to automate and streamline essential workplace tasks. Developed during the **AI Skills Acceleration (ASA_2) program**, this project demonstrates the practical application of Generative AI, sophisticated prompt engineering, and premium UI/UX design to solve real-world productivity challenges.
 
 **Author:** Zintle Mgqongose  
-**Institution:** CAPACITI
+**Organization:** CAPACITI
 
 ---
 
