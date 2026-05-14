@@ -8,7 +8,7 @@
 
 ---
 
-## 🎨 Design Philosophy: Glassmorphism
+## 🎨 Design Philosophy
 The platform features a **Soft Glassmorphism** design aesthetic, focusing on a futuristic and professional "SaaS" feel:
 
 *   **Frosted Glass Effects:** Translucent containers with background blurs that create depth.
@@ -19,7 +19,7 @@ The platform features a **Soft Glassmorphism** design aesthetic, focusing on a f
 
 ---
 
-## 🛡️ Responsible AI & Human Review
+## 🛡️ AI & Human Review
 AURA AI is built on the principle of **Human-in-the-loop (HITL)** to ensure ethical and accurate AI usage:
 
 *   **Mandatory Human Review:** All AI-generated responses are displayed in editable text areas, requiring human verification before professional use.
