@@ -1,5 +1,7 @@
 import { useState, type ReactNode } from "react";
-import { Loader2, Sparkles, Copy, RotateCcw, Pencil, CheckCircle2, AlertTriangle } from "lucide-react";
+import { Loader2, Sparkles, Copy, RotateCcw, Pencil, CheckCircle2, AlertTriangle, Eye } from "lucide-react";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
@@ -32,7 +34,7 @@ export function AiFeature({ feature, title, description, icon, fields, outputLab
   const [output, setOutput] = useState("");
   const [loading, setLoading] = useState(false);
   const [approved, setApproved] = useState(false);
-  const [isEditing, setIsEditing] = useState(true);
+  const [isEditing, setIsEditing] = useState(false);
   const requiresReview = feature === "email" || feature === "summary";
 
   async function generate() {
@@ -51,6 +53,7 @@ export function AiFeature({ feature, title, description, icon, fields, outputLab
       if (error) throw error;
       if (data?.error) throw new Error(data.error);
       setOutput(data.text ?? "");
+      setIsEditing(false);
     } catch (e: unknown) {
       const msg = e instanceof Error ? e.message : "Failed to generate";
       toast.error(msg);
@@ -124,26 +127,55 @@ export function AiFeature({ feature, title, description, icon, fields, outputLab
           <CardHeader className="flex flex-row items-center justify-between space-y-0">
             <div>
               <CardTitle className="text-base">{outputLabel}</CardTitle>
-              <CardDescription>Edit freely before using.</CardDescription>
+              <CardDescription>Rendered preview — toggle to edit.</CardDescription>
             </div>
-            <div className="flex gap-2">
-              <Button variant="outline" size="sm" onClick={copy} disabled={!output}>
+            <div className="flex gap-2 opacity-100">
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => setIsEditing((v) => !v)}
+                disabled={!output}
+                className="text-[#d8b4fe] hover:text-white hover:bg-purple-500/20 border border-purple-400/30"
+                title={isEditing ? "Preview" : "Edit"}
+              >
+                {isEditing ? <Eye className="h-4 w-4" /> : <Pencil className="h-4 w-4" />}
+              </Button>
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={copy}
+                disabled={!output}
+                className="text-[#d8b4fe] hover:text-white hover:bg-purple-500/20 border border-purple-400/30"
+                title="Copy"
+              >
                 <Copy className="h-4 w-4" />
               </Button>
-              <Button variant="outline" size="sm" onClick={() => setOutput("")} disabled={!output}>
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={generate}
+                disabled={!output || loading}
+                className="text-[#d8b4fe] hover:text-white hover:bg-purple-500/20 border border-purple-400/30"
+                title="Regenerate"
+              >
                 <RotateCcw className="h-4 w-4" />
               </Button>
             </div>
           </CardHeader>
           <CardContent>
-            <Textarea
-              value={output}
-              onChange={(e) => setOutput(e.target.value)}
-              rows={16}
-              placeholder="Your AI-generated result will appear here…"
-              readOnly={requiresReview && !isEditing}
-              className="font-mono text-sm leading-relaxed"
-            />
+            {output && !isEditing ? (
+              <div className="min-h-[24rem] rounded-2xl bg-white/5 border border-white/10 px-4 py-3 prose prose-sm prose-invert max-w-none prose-p:my-2 prose-headings:text-white prose-strong:text-white prose-a:text-[#d8b4fe] prose-code:text-[#d8b4fe] prose-li:my-0.5">
+                <ReactMarkdown remarkPlugins={[remarkGfm]}>{output}</ReactMarkdown>
+              </div>
+            ) : (
+              <Textarea
+                value={output}
+                onChange={(e) => setOutput(e.target.value)}
+                rows={16}
+                placeholder="Your AI-generated result will appear here…"
+                className="text-sm leading-relaxed"
+              />
+            )}
             {requiresReview && output && (
               <div className="mt-4 space-y-3">
                 {approved ? (
