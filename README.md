@@ -1,13 +1,7 @@
-This is a perfect addition for the Modern UI/UX part of your evaluation. Glassmorphism gives your "AURA AI" that high-end, futuristic feel.
-
-Here is the final version of the text to paste into your README.md (as seen in Screenshot 2026-05-14 104035.png). I’ve highlighted the Glassmorphism and the Human Review to ensure you get full credit for innovation and responsible design.
-
 AURA AI — By CAPACITI
 AI-Powered Workplace Productivity Assistant
+Project Overview
 AURA AI is a comprehensive, single-platform dashboard designed to automate and streamline essential workplace tasks. Developed during the AI Skills Acceleration (ASA_2) program, this project demonstrates the practical application of Generative AI, sophisticated prompt engineering, and premium UI/UX design to solve real-world productivity challenges.
-
-📖 Project Overview
-AURA AI functions as an integrated workplace assistant that helps professionals manage communication, meetings, and research within a unified interface. The project was built with a focus on Responsible AI usage and a high-end visual experience.
 
 Program: AI Skills Acceleration 2 (ASA_2) || CPT_Week2
 
@@ -54,7 +48,10 @@ Version Control: GitHub
 Compatibility: Fully responsive for both Desktop and Mobile devices.
 
 ⚙️ Setup Instructions
-1. Prerequisites
-A modern web browser (Chrome, Edge, or Safari).
+Prerequisites: A modern web browser and Node.js installed locally.
 
-Node.js installed (to run the build locally).
+Clone Repository: git clone [https://github.com/ZintleMgqongose/zintlemgqongose-AI-Productivity-Assistant.git](https://github.com/ZintleMgqongose/zintlemgqongose-AI-Productivity-Assistant.git)
+
+Install Dependencies: npm install
+
+Run Development Server: npm run dev
