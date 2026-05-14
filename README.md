@@ -10,7 +10,8 @@ Program: **AI Skills Acceleration 2 (ASA_2) || CPT_Week2**
 **Institution:** CAPACITI
 
 ---
-##🎨 Design Philosophy: Glassmorphism
+
+## 🎨Design Philosophy
 The platform features a Soft Glassmorphism design aesthetic, characterized by:
 
 Frosted Glass Effects: Translucent containers with background blurs that create depth and a modern "SaaS" feel.
@@ -19,6 +20,9 @@ Luxury Dark Theme: A "Dark Nude" and "Midnight Lilac" color palette to reduce ey
 
 Glow Accents: Subtle purple/lilac glows to highlight active tools and AI-generated outputs.
 
+---
+
+## 🛡️ Responsible AI & Human Review
 🛡️ Responsible AI & Human Review
 AURA AI is built on the principle of Human-in-the-loop (HITL):
 
@@ -26,7 +30,8 @@ Mandatory Human Review: All AI-generated responses are displayed in editable tex
 
 Transparency Disclaimer: A persistent notice is visible across all modules, clearly stating that the content is AI-assisted and requires human verification for professional accuracy.
 
-✨ Features
+---
+## ✨ Features
 This platform integrates five core AI-powered tools into one responsive dashboard:
 
 AI Chatbot Interface: Interactive assistant for real-time queries and structured support.
@@ -39,7 +44,8 @@ AI Task Planner: Breaks down complex projects into manageable milestones and sch
 
 AI Research Assistant: Provides structured research briefings and summaries of complex topics.
 
-🛠 Tools & Technologies
+---
+## 🛠 Tools & Technologies
 AI Engine: OpenAI GPT-4o (via Lovable AI)
 
 Frontend: React / Tailwind CSS (Custom Glassmorphism styles)
@@ -48,7 +54,8 @@ Version Control: GitHub
 
 Compatibility: Fully responsive for both Desktop and Mobile devices.
 
-⚙️ Setup Instructions
+---
+## ⚙️ Setup Instructions
 Prerequisites: A modern web browser and Node.js installed locally.
 
 Clone Repository: git clone [https://github.com/ZintleMgqongose/zintlemgqongose-AI-Productivity-Assistant.git](https://github.com/ZintleMgqongose/zintlemgqongose-AI-Productivity-Assistant.git)
