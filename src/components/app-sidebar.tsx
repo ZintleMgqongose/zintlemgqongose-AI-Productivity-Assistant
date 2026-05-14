@@ -36,8 +36,8 @@ export function AppSidebar() {
           </div>
           {!collapsed && (
             <div className="flex flex-col leading-tight">
-              <span className="text-sm font-semibold text-white">Aura AI</span>
-              <span className="text-xs text-[#94A3B8]">Workplace</span>
+              <span className="text-sm font-semibold text-white tracking-wide">AURA AI</span>
+              <span className="text-xs text-[#94A3B8]">By CAPACITI</span>
             </div>
           )}
         </div>
@@ -51,7 +51,15 @@ export function AppSidebar() {
                 const active = currentPath === item.url;
                 return (
                   <SidebarMenuItem key={item.url}>
-                    <SidebarMenuButton asChild isActive={active} className={active ? "bg-purple-500/20 text-white border-l-2 border-[#a78bfa] shadow-[0_0_18px_rgba(167,139,250,0.4)] hover:bg-purple-500/25" : "text-[#94A3B8] hover:bg-white/5 hover:text-white"}>
+                    <SidebarMenuButton
+                      asChild
+                      isActive={active}
+                      className={
+                        active
+                          ? "data-[active=true]:bg-purple-500/20 data-[active=true]:text-white border-l-2 border-[#a78bfa] shadow-[0_0_18px_rgba(167,139,250,0.4)] hover:bg-purple-500/30 hover:text-white"
+                          : "text-[#94A3B8] hover:bg-white/5 hover:text-white"
+                      }
+                    >
                       <Link to={item.url} className="flex items-center gap-2">
                         <item.icon className={`h-4 w-4 ${active ? "text-[#d8b4fe]" : "text-[#94A3B8]"}`} strokeWidth={1.5} />
                         {!collapsed && <span className={active ? "text-white font-medium" : ""}>{item.title}</span>}

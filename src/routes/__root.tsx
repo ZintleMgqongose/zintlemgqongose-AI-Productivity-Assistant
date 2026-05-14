@@ -125,7 +125,7 @@ function RootComponent() {
           <div className="flex-1 flex flex-col min-w-0">
             <header className="h-14 flex items-center gap-3 border-b border-white/10 bg-[#0A0A0A]/70 backdrop-blur-3xl px-4 sticky top-0 z-10">
               <SidebarTrigger />
-              <span className="text-sm font-medium text-[#94A3B8]">AI Workplace Productivity Assistant</span>
+              <span className="text-sm font-medium text-[#94A3B8]">AURA AI · By CAPACITI</span>
             </header>
             <main className="flex-1">
               <Outlet />
