@@ -6,8 +6,6 @@
 **Author:** Zintle Mgqongose  
 **Institution:** CAPACITI
 
----# AURA AI — By CAPACITI 
-
 ![AURA AI Dashboard Display](dashboard.png)
 
 **Author:** Zintle Mgqongose  
