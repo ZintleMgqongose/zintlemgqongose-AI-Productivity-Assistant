@@ -83,6 +83,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:title", content: "Aura — AI Workplace Productivity Assistant" },
+      { name: "twitter:description", content: "Automate workplace tasks with AI: emails, meeting summaries, task plans, research, and chat." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/60abdb02-3da0-4322-81e8-ceeec3facaef/id-preview-07842764--c0f6aefa-8058-4d19-8f3b-3636da55e564.lovable.app-1778745675411.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/60abdb02-3da0-4322-81e8-ceeec3facaef/id-preview-07842764--c0f6aefa-8058-4d19-8f3b-3636da55e564.lovable.app-1778745675411.png" },
     ],
     links: [
       {
