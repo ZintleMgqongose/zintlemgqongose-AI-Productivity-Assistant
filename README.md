@@ -1,7 +1,7 @@
 # AURA AI — By CAPACITI 
 
 ## Project Overview
-AI-Powered Workplace Productivity Assistant *AURA AI* is a comprehensive, single-platform dashboard designed to automate and streamline essential workplace tasks. Developed during the AI Skills Acceleration (ASA_2) program, this project demonstrates the practical application of Generative AI, sophisticated prompt engineering, and premium UI/UX design to solve real-world productivity challenges.
+AI-Powered Workplace Productivity Assistant #AURA AI# is a comprehensive, single-platform dashboard designed to automate and streamline essential workplace tasks. Developed during the AI Skills Acceleration (ASA_2) program, this project demonstrates the practical application of Generative AI, sophisticated prompt engineering, and premium UI/UX design to solve real-world productivity challenges.
 
 Program: AI Skills Acceleration 2 (ASA_2) || CPT_Week2
 
