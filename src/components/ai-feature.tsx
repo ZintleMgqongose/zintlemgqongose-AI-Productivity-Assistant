@@ -164,7 +164,7 @@ export function AiFeature({ feature, title, description, icon, fields, outputLab
           </CardHeader>
           <CardContent>
             {output && !isEditing ? (
-              <div className="min-h-[24rem] rounded-2xl bg-white/5 border border-white/10 px-4 py-3 prose prose-sm prose-invert max-w-none prose-p:my-2 prose-headings:text-white prose-strong:text-white prose-a:text-[#d8b4fe] prose-code:text-[#d8b4fe] prose-li:my-0.5">
+              <div className="min-h-[24rem] rounded-2xl bg-white/5 border border-white/10 px-4 py-3 prose prose-sm prose-invert max-w-none prose-p:my-2 prose-headings:text-[#d8b4fe] prose-headings:font-medium prose-headings:tracking-tight prose-h1:text-base prose-h2:text-sm prose-h2:uppercase prose-h2:tracking-wider prose-h2:mt-4 prose-h2:mb-2 prose-h3:text-sm prose-strong:text-white prose-a:text-[#d8b4fe] prose-code:text-[#d8b4fe] prose-li:my-0.5">
                 <ReactMarkdown remarkPlugins={[remarkGfm]}>{output}</ReactMarkdown>
               </div>
             ) : (
