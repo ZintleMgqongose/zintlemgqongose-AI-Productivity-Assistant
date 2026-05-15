@@ -3,6 +3,11 @@ const corsHeaders = {
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
 };
 
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2.45.0";
+
+const MAX_MESSAGES = 50;
+const MAX_MESSAGE_CHARS = 8000;
+
 const PROMPTS: Record<string, (i: Record<string, string>) => string> = {
   email: (i) =>
     `Write a professional workplace email.\n\nRecipient / context: ${i.recipient}\nTone: ${i.tone}\nKey points to cover:\n${i.points}\n\nStrict formatting rules:\n1. The FIRST line MUST be a clear, specific subject line in the exact format: "Subject: <concise subject>". Never omit it.\n2. Follow with a blank line, then a greeting, then the body, then a sign-off and sender placeholder.\n3. The sign-off MUST be a professional closing chosen to match the tone:\n   - Formal / serious tone → "Sincerely,"\n   - Neutral / standard professional tone → "Best regards,"\n   - Friendly / warm professional tone → "Kind regards," or "Best,"\n   Never use casual closings like "Cheers" or "Thanks!" unless the tone is explicitly casual.\n4. Keep it concise, clear, and ready to send.`,
@@ -18,23 +23,79 @@ Deno.serve(async (req) => {
   if (req.method === "OPTIONS") return new Response(null, { headers: corsHeaders });
 
   try {
+    // Require authenticated Supabase user
+    const authHeader = req.headers.get("Authorization") || "";
+    const token = authHeader.startsWith("Bearer ") ? authHeader.slice(7) : "";
+    if (!token) {
+      return new Response(JSON.stringify({ error: "Unauthorized." }), {
+        status: 401,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+    const SUPABASE_URL = Deno.env.get("SUPABASE_URL");
+    const SUPABASE_PUBLISHABLE_KEY =
+      Deno.env.get("SUPABASE_PUBLISHABLE_KEY") || Deno.env.get("SUPABASE_ANON_KEY");
+    if (!SUPABASE_URL || !SUPABASE_PUBLISHABLE_KEY) {
+      console.error("Missing Supabase env vars for auth verification");
+      return new Response(JSON.stringify({ error: "An internal error occurred. Please try again." }), {
+        status: 500,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+    const authClient = createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY, {
+      global: { headers: { Authorization: `Bearer ${token}` } },
+      auth: { persistSession: false, autoRefreshToken: false },
+    });
+    const { data: userData, error: userErr } = await authClient.auth.getUser(token);
+    if (userErr || !userData?.user) {
+      return new Response(JSON.stringify({ error: "Unauthorized." }), {
+        status: 401,
+        headers: { ...corsHeaders, "Content-Type": "application/json" },
+      });
+    }
+
     const { feature, inputs, messages } = await req.json();
     const LOVABLE_API_KEY = Deno.env.get("LOVABLE_API_KEY");
     if (!LOVABLE_API_KEY) throw new Error("LOVABLE_API_KEY missing");
 
     let payloadMessages;
     if (feature === "chat") {
+      const rawMessages = Array.isArray(messages) ? messages : [];
+      if (rawMessages.length > MAX_MESSAGES) {
+        return new Response(
+          JSON.stringify({ error: `Too many messages. Maximum is ${MAX_MESSAGES}.` }),
+          { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } },
+        );
+      }
+      const sanitized = [];
+      for (const m of rawMessages) {
+        if (!m || typeof m !== "object") continue;
+        const role = (m as { role?: unknown }).role;
+        const content = (m as { content?: unknown }).content;
+        if (role !== "user" && role !== "assistant") continue;
+        if (typeof content !== "string") continue;
+        if (content.length === 0) continue;
+        sanitized.push({
+          role,
+          content: content.length > MAX_MESSAGE_CHARS ? content.slice(0, MAX_MESSAGE_CHARS) : content,
+        });
+      }
       payloadMessages = [
         {
           role: "system",
           content:
             "You are a helpful, professional AI workplace assistant. Be concise, structured, and practical. Use markdown when helpful. Note when you are uncertain.",
         },
-        ...(Array.isArray(messages) ? messages : []),
+        ...sanitized,
       ];
     } else {
       const builder = PROMPTS[feature as keyof typeof PROMPTS];
-      if (!builder) throw new Error("Unknown feature");
+      if (!builder) {
+        return new Response(JSON.stringify({ error: "Invalid request." }), {
+          status: 400,
+          headers: { ...corsHeaders, "Content-Type": "application/json" },
+        });
+      }
       payloadMessages = [
         { role: "system", content: "You are an AI assistant for workplace productivity. Always produce clear, well-structured, professional output." },
         { role: "user", content: builder(inputs ?? {}) },
@@ -82,7 +143,7 @@ Deno.serve(async (req) => {
     });
   } catch (e) {
     console.error("ai-generate error:", e);
-    return new Response(JSON.stringify({ error: e instanceof Error ? e.message : "Unknown error" }), {
+    return new Response(JSON.stringify({ error: "An internal error occurred. Please try again." }), {
       status: 500,
       headers: { ...corsHeaders, "Content-Type": "application/json" },
     });
